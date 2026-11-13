@@ -1,0 +1,28 @@
+@model wt_lab4_4mvc_ostapchuk.Models.Product
+
+@{
+    ViewData["Title"] = "Детали товара";
+}
+
+<div class="container mt-4">
+    <div class="card shadow rounded-4 p-4">
+        <h2>@Model.Name</h2>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">@Model.Id</dd>
+            
+            <dt class="col-sm-3">Категория</dt>
+            <dd class="col-sm-9">@Model.Category</dd>
+            
+            <dt class="col-sm-3">Цена</dt>
+            <dd class="col-sm-9">@Model.Price руб.</dd>
+
+            <dt class="col-sm-3">Доступен</dt>
+            <dd class="col-sm-9">@(Model.IsAvailable ? "Да" : "Нет")</dd>
+        </dl>
+        <div>
+            <a asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+        </div>
+    </div>
+</div>

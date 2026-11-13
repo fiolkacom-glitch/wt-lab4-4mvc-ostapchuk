@@ -1,0 +1,52 @@
+@model List<wt_lab4_4mvc_ostapchuk.Models.Product>
+
+@{
+    ViewData["Title"] = "Каталог";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-danger text-uppercase">Каталог товаров</h2>
+        <a asp-action="Create" class="btn btn-outline-danger fw-bold rounded-0">+ Добавить</a>
+    </div>
+
+    <div class="table-responsive shadow-lg rounded-0 border-top border-danger border-3">
+        <table class="table table-hover align-middle mb-0 bg-white">
+            <thead class="table-dark text-uppercase">
+                <tr>
+                    <th scope="col" class="text-center">Id</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Категория</th>
+                    <th scope="col" class="text-center">Цена (руб.)</th>
+                    <th scope="col" class="text-center">Статус</th>
+                    <th scope="col" class="text-center">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td class="text-center fw-bold">@p.Id</td>
+                        <td class="fw-bold">@p.Name</td>
+                        <td>@p.Category</td>
+                        <td class="text-center text-danger fw-bold">@p.Price.ToString("F2")</td>
+                        <td class="text-center">
+                            @if (p.IsAvailable)
+                            {
+                                <span class="badge bg-success px-3 py-2 rounded-0">В наличии</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary px-3 py-2 rounded-0">Нет</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-sm btn-dark rounded-0">Подробнее</a>
+                            <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-outline-dark rounded-0">✎</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
