@@ -5,7 +5,6 @@ namespace wt_lab4_4mvc_ostapchuk.Controllers;
 
 public class ProductController : Controller
 {
-    // Данные в памяти (Спортивный клуб)
     private static List<Product> _products = new()
     {
         new Product { Id = 1, Name = "Абонемент Годовой", Category = "Абонементы", Price = 500, IsAvailable = true },
@@ -13,13 +12,11 @@ public class ProductController : Controller
         new Product { Id = 3, Name = "Персональная тренировка", Category = "Услуги", Price = 80, IsAvailable = false }
     };
 
-    // 1. СПИСОК
     public IActionResult Index()
     {
         return View(_products);
     }
 
-    // 2. ПОДРОБНЕЕ
     public IActionResult Details(int id)
     {
         var product = _products.FirstOrDefault(p => p.Id == id);
@@ -27,13 +24,13 @@ public class ProductController : Controller
         return View(product);
     }
 
-    // 3. ДОБАВЛЕНИЕ (GET - показать форму)
+    // GET: /Product/Create (открывает форму)
     public IActionResult Create()
     {
         return View();
     }
 
-    // 3. ДОБАВЛЕНИЕ (POST - сохранить)
+    // POST: /Product/Create (сохраняет форму)
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(Product product)
@@ -47,7 +44,6 @@ public class ProductController : Controller
         return View(product);
     }
 
-    // 4. РЕДАКТИРОВАНИЕ (GET - показать форму)
     public IActionResult Edit(int id)
     {
         var product = _products.FirstOrDefault(p => p.Id == id);
@@ -55,7 +51,6 @@ public class ProductController : Controller
         return View(product);
     }
 
-    // 4. РЕДАКТИРОВАНИЕ (POST - сохранить изменения)
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int id, Product product)
